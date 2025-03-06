@@ -14,7 +14,7 @@ document.getElementById("btn").addEventListener("click", () => {
     // Step 1: Initial Promise (2 sec delay)
     new Promise(resolve => {
         setTimeout(() => {
-            output.innerText = Result: ${inputValue};
+            output.innerText = `Result: ${inputValue}`;
             resolve(inputValue);
         }, 2000);
     })
@@ -23,7 +23,7 @@ document.getElementById("btn").addEventListener("click", () => {
         return new Promise(resolve => {
             setTimeout(() => {
                 num *= 2;
-                output.innerText = Result: ${num};
+                output.innerText = `Result: ${num}`;
                 resolve(num);
             }, 2000);
         });
@@ -33,7 +33,7 @@ document.getElementById("btn").addEventListener("click", () => {
         return new Promise(resolve => {
             setTimeout(() => {
                 num -= 3;
-                output.innerText = Result: ${num};
+                output.innerText = `Result: ${num}`;
                 resolve(num);
             }, 1000);
         });
@@ -43,7 +43,7 @@ document.getElementById("btn").addEventListener("click", () => {
         return new Promise(resolve => {
             setTimeout(() => {
                 num /= 2;
-                output.innerText = Result: ${num};
+                output.innerText = `Result: ${num}`;
                 resolve(num);
             }, 1000);
         });
@@ -53,7 +53,7 @@ document.getElementById("btn").addEventListener("click", () => {
         return new Promise(resolve => {
             setTimeout(() => {
                 num += 10;
-                output.innerText = Final Result: ${num};
+                output.innerText = `Final Result: ${num}`;
                 resolve(num);
             }, 1000);
         });
