@@ -1,32 +1,62 @@
-document.getElementById("startBtn").addEventListener("click", manipulateArray);
+//your JS code here. If required.
 
-function manipulateArray() {
+document.getElementById("btn").addEventListener("click", () => {
     const output = document.getElementById("output");
+    const inputValue = parseFloat(document.getElementById("ip").value);
+
+    if (isNaN(inputValue)) {
+        output.innerText = "Please enter a valid number!";
+        return;
+    }
+
     output.innerText = "Processing...";
 
-    // Step 1: Create a Promise that resolves with the array after 3 seconds
+    // Step 1: Initial Promise (2 sec delay)
     new Promise(resolve => {
         setTimeout(() => {
-            resolve([1, 2, 3, 4]);
-        }, 3000);
+            output.innerText = Result: ${inputValue};
+            resolve(inputValue);
+        }, 2000);
     })
-    .then(arr => {
+    .then(num => {
+        // Step 2: Multiply by 2 (2 sec delay)
         return new Promise(resolve => {
             setTimeout(() => {
-                const evenNumbers = arr.filter(num => num % 2 === 0);
-                output.innerText = evenNumbers.join(", ");
-                resolve(evenNumbers);
-            }, 3000);
-        });
-    })
-    .then(evenNumbers => {
-        // Step 3: Multiply even numbers by 2 after another 2 seconds
-        return new Promise(resolve => {
-            setTimeout(() => {
-                const doubledNumbers = evenNumbers.map(num => num * 2);
-                output.innerText = doubledNumbers.join(", ");
-                resolve(doubledNumbers);
+                num *= 2;
+                output.innerText = Result: ${num};
+                resolve(num);
             }, 2000);
         });
+    })
+    .then(num => {
+        // Step 3: Subtract 3 (1 sec delay)
+        return new Promise(resolve => {
+            setTimeout(() => {
+                num -= 3;
+                output.innerText = Result: ${num};
+                resolve(num);
+            }, 1000);
+        });
+    })
+    .then(num => {
+        // Step 4: Divide by 2 (1 sec delay)
+        return new Promise(resolve => {
+            setTimeout(() => {
+                num /= 2;
+                output.innerText = Result: ${num};
+                resolve(num);
+            }, 1000);
+        });
+    })
+    .then(num => {
+        // Step 5: Add 10 (1 sec delay)
+        return new Promise(resolve => {
+            setTimeout(() => {
+                num += 10;
+                output.innerText = Final Result: ${num};
+                resolve(num);
+            }, 1000);
+        });
     });
-}
+});
+``
