@@ -1,5 +1,4 @@
 //your JS code here. If required.
-
 document.getElementById("btn").addEventListener("click", () => {
     const output = document.getElementById("output");
     const inputValue = parseFloat(document.getElementById("ip").value);
