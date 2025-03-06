@@ -1,19 +1,32 @@
-//your JS code here. If required.
-document.getElementById("btn").addEventListener("click", async function () {
-    const textInput = document.getElementById("text").value;
-    const delayInput = document.getElementById("delay").value;
-    const outputDiv = document.getElementById("output");
-    
-    if (!textInput || !delayInput) {
-        outputDiv.innerText = "Please enter both text and delay values.";
-        return;
-    }
-    
-    outputDiv.innerText = "Waiting...";
-    await delayMessage(textInput, parseInt(delayInput));
-});
+document.getElementById("startBtn").addEventListener("click", manipulateArray);
 
-async function delayMessage(message, delay) {
-    await new Promise(resolve => setTimeout(resolve, delay));
-    document.getElementById("output").innerText = message;
+function manipulateArray() {
+    const output = document.getElementById("output");
+    output.innerText = "Processing...";
+
+    // Step 1: Create a Promise that resolves with the array after 3 seconds
+    new Promise(resolve => {
+        setTimeout(() => {
+            resolve([1, 2, 3, 4]);
+        }, 3000);
+    })
+    .then(arr => {
+        return new Promise(resolve => {
+            setTimeout(() => {
+                const evenNumbers = arr.filter(num => num % 2 === 0);
+                output.innerText = evenNumbers.join(", ");
+                resolve(evenNumbers);
+            }, 3000);
+        });
+    })
+    .then(evenNumbers => {
+        // Step 3: Multiply even numbers by 2 after another 2 seconds
+        return new Promise(resolve => {
+            setTimeout(() => {
+                const doubledNumbers = evenNumbers.map(num => num * 2);
+                output.innerText = doubledNumbers.join(", ");
+                resolve(doubledNumbers);
+            }, 2000);
+        });
+    });
 }
